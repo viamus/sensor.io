@@ -65,11 +65,11 @@ func main() {
 
 	hub := getSocketHubInstance()
 	redis := getRedisRepositoryInstance()
-	redis.addr = "192.168.99.100:6379"
+	redis.addr = "redis:6379"
 	redis.password = "redispass"
 	initRedisRepository(redis)
 	go redis.redisSetRun()
 	go hub.run()
-	http.HandleFunc("/receive", receiveEventWs)
+	http.HandleFunc("/receiver", receiveEventWs)
 	http.ListenAndServe(":8080", nil)
 }

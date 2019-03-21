@@ -1,0 +1,20 @@
+version: '3'
+services:
+  sensor-client:
+    build: cmd/sensorClient/.
+    ports:
+      - "8081"
+    depends_on:
+      - sensor-server
+  sensor-server:
+    build: cmd/sensorServer/.
+    ports:
+     - "8080:8080"
+    depends_on: 
+     - redis
+
+  redis:
+    image: 'redis:4-alpine'
+    command: redis-server --requirepass redispass
+    ports:
+      - '6379:6379'
