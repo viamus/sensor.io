@@ -6,6 +6,7 @@ services:
       - "8081"
     depends_on:
       - sensor-server
+      
   sensor-server:
     build: cmd/sensorServer/.
     ports:
